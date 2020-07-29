@@ -29,7 +29,6 @@ const styles = {
 const HistorySuggestions = ({
   onClick,
   searchHistory,
-  suggestions,
   searchPhrase,
   children,
   deleteSearchHistory,
@@ -37,10 +36,11 @@ const HistorySuggestions = ({
   bottomHeight,
   name,
 }) => {
-  const isPersistentSearchBar = name === 'persistent-search-bar.search.suggestions';
-  if (!visible || (suggestions && suggestions.length && searchPhrase !== '') || !searchHistory.length) {
+  if (!visible || !searchHistory.length || searchPhrase !== '') {
     return children;
   }
+
+  const isPersistentSearchBar = name === 'persistent-search-bar.search.suggestions.before';
 
   /**
    * @param {Event} e Event
@@ -81,7 +81,6 @@ HistorySuggestions.propTypes = {
   children: PropTypes.node,
   searchHistory: PropTypes.arrayOf(PropTypes.string),
   searchPhrase: PropTypes.string,
-  suggestions: PropTypes.arrayOf(PropTypes.string),
   visible: PropTypes.bool,
 };
 
@@ -89,7 +88,6 @@ HistorySuggestions.defaultProps = {
   children: null,
   searchHistory: null,
   searchPhrase: null,
-  suggestions: null,
   bottomHeight: 0,
   visible: true,
 };

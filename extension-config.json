@@ -15,7 +15,10 @@
     {
       "id": "HistorySuggestions",
       "path": "frontend/portals/HistorySuggestions/index.jsx",
-      "target": ["search.suggestions", "persistent-search-bar.search.suggestions"],
+      "target": [
+        "search.suggestions.before",
+        "persistent-search-bar.search.suggestions.before"
+      ],
       "type": "portals"
     },
     {
