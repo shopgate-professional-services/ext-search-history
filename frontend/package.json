@@ -12,7 +12,7 @@
     "eslint": "^6.8.0"
   },
   "peerDependencies": {
-    "@shopgate/engage": "^6.11.0"
+    "@shopgate/engage": "^6.13.5"
   },
   "dependencies": {
     "@shopgate-ps/pwa-extension-kit": "^0.7.1",
