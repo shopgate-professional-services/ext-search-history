@@ -1,0 +1,47 @@
+{
+  "version": "1.0.0-rc.1",
+  "id": "@shopgate-project/search-history",
+  "components": [
+    {
+      "id": "Subscribers",
+      "path": "frontend/subscriptions.js",
+      "type": "subscribers"
+    },
+    {
+      "id": "searchHistory",
+      "path": "frontend/reducers.js",
+      "type": "reducers"
+    },
+    {
+      "id": "HistorySuggestions",
+      "path": "frontend/portals/HistorySuggestions/index.jsx",
+      "target": [
+        "search.suggestions.before",
+        "persistent-search-bar.search.suggestions.before"
+      ],
+      "type": "portals"
+    },
+    {
+      "type": "translations",
+      "path": "frontend/locale/de-DE.json",
+      "id": "locale/de-DE"
+    },
+    {
+      "type": "translations",
+      "path": "frontend/locale/en-US.json",
+      "id": "locale/en-US"
+    }
+  ],
+  "configuration": {
+    "maxHistoryLength": {
+      "type": "admin",
+      "destination": "frontend",
+      "default": 10,
+      "params": {
+        "type": "number",
+        "label": "The maximum length of the saved search history"
+      }
+    }
+  },
+  "steps": []
+}

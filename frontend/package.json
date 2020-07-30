@@ -1,0 +1,21 @@
+{
+  "name": "@shopgate-project/search-history",
+  "version": "1.0.0-rc.1",
+  "description": "",
+  "license": "Apache-2.0",
+  "scripts": {
+    "lint": "eslint --parser babel-eslint --ignore-path ../.gitignore --ext .js --ext .jsx ."
+  },
+  "devDependencies": {
+    "@shopgate/engage": "^6.13.5-rc.2",
+    "@shopgate/eslint-config": "^6.13.5-rc.2",
+    "eslint": "^6.8.0"
+  },
+  "peerDependencies": {
+    "@shopgate/engage": "^6.13.5-rc.2"
+  },
+  "dependencies": {
+    "@shopgate-ps/pwa-extension-kit": "^0.7.1",
+    "classnames": "^2.2.6"
+  }
+}
