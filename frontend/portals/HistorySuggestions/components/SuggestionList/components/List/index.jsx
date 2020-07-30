@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import BaseList from '@shopgate/pwa-common/components/List';
-import BaseListItem from '@shopgate/pwa-common/components/List/components/Item';
+import { List as BaseList } from '@shopgate/engage/components';
 import Item from './components/Item';
 import styles from './style';
 
@@ -52,7 +51,7 @@ class List extends Component {
           }
 
           return (
-            <BaseListItem
+            <BaseList.Item
               className={classes}
               isSelected={isSelected}
               key={key}
@@ -60,7 +59,7 @@ class List extends Component {
               <div className={styles.innerContainer(isPersistentSearchBar)}>
                 {child}
               </div>
-            </BaseListItem>
+            </BaseList.Item>
           );
         })}
       </BaseList>

@@ -1,5 +1,5 @@
 import { css } from 'glamor';
-import { themeConfig } from '@shopgate/pwa-common/helpers/config';
+import { themeConfig } from '@shopgate/engage';
 import { isIOSTheme } from '@shopgate-ps/pwa-extension-kit/env/helpers';
 
 const { colors, variables } = themeConfig;

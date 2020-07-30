@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { I18n } from '@shopgate/engage/components';
-import { themeConfig } from '@shopgate/pwa-common/helpers/config';
-import Button from '@shopgate/pwa-ui-shared/Button';
+import { themeConfig } from '@shopgate/engage';
+import { I18n, Button } from '@shopgate/engage/components';
 import { isIOSTheme } from '@shopgate-ps/pwa-extension-kit/env/helpers';
 import { css } from 'glamor';
 import classnames from 'classnames';
