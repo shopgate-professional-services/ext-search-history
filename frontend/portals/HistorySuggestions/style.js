@@ -32,7 +32,7 @@ const list = (isPersistentSearchBar) => {
     height: '100vh',
     left: 0,
     right: 0,
-    top: `calc(var(--safe-area-inset-top) + ${HEADER_HEIGHT}px + ${additionalHeight}px + ${isIOS ? IOS_SEARCH_HEIGHT : GMD_SEARCH_HEIGHT}px )`,
+    top: `calc(${isPersistentSearchBar ? 'var(--safe-area-inset-top) + ' : ''} ${HEADER_HEIGHT}px + ${additionalHeight}px + ${isIOS ? IOS_SEARCH_HEIGHT : GMD_SEARCH_HEIGHT}px )`,
     backgroundColor: colors.light,
     overflowY: 'scroll',
     zIndex: 3,
