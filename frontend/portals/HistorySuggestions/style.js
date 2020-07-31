@@ -6,7 +6,7 @@ const isIOS = isIOSTheme();
 const { colors } = themeConfig;
 
 export const HEADER_HEIGHT = 56;
-export const IOS_SEARCH_HEIGHT = 44;
+export const IOS_SEARCH_HEIGHT = 43;
 export const GMD_SEARCH_HEIGHT = 58;
 
 /**
