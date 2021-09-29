@@ -46,6 +46,7 @@ const HistorySuggestions = ({
    * @param {string} searchTerm searchTerm
    */
   const handleClick = (e, searchTerm) => {
+    // setTimeout prevents double click while VoiceOver is active
     setTimeout(() => {
       e.currentTarget.value = searchTerm;
       onClick(e, searchTerm);
