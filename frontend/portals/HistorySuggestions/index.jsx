@@ -46,8 +46,10 @@ const HistorySuggestions = ({
    * @param {string} searchTerm searchTerm
    */
   const handleClick = (e, searchTerm) => {
-    e.currentTarget.value = searchTerm;
-    onClick(e, searchTerm);
+    setTimeout(() => {
+      e.currentTarget.value = searchTerm;
+      onClick(e, searchTerm);
+    }, 0);
   };
 
   return (
