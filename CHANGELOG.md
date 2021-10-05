@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.0.1] 2021-09-30
+- added voice reader support
+
 ## [1.0.0] 2020-07-24
 - initial release
 

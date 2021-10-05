@@ -23,7 +23,7 @@ const bottom = value => css({
  * @returns {string}
  */
 const list = (isPersistentSearchBar) => {
-  const additionalHeight = !isPersistentSearchBar && isIOS ? 25 : 0;
+  const additionalHeight = isIOS ? 25 : 0;
   return css({
     fontSize: 16,
     fontWeight: 400,
@@ -32,7 +32,7 @@ const list = (isPersistentSearchBar) => {
     height: '100vh',
     left: 0,
     right: 0,
-    top: `calc(${isPersistentSearchBar ? 'var(--safe-area-inset-top) + ' : ''} ${HEADER_HEIGHT}px + ${additionalHeight}px + ${isIOS ? IOS_SEARCH_HEIGHT : GMD_SEARCH_HEIGHT}px )`,
+    top: isPersistentSearchBar ? 0 : `calc(${HEADER_HEIGHT}px + ${additionalHeight}px + ${isIOS ? IOS_SEARCH_HEIGHT : GMD_SEARCH_HEIGHT}px )`,
     backgroundColor: colors.light,
     overflowY: 'scroll',
     zIndex: 3,
