@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.0.3] [1.0.4] 2022-02-10
+- added IT, FR, ES translations
+
+## [1.0.2] 2021-10-05
+- style fixes
+
 ## [1.0.1] 2021-09-30
 - added voice reader support
 
