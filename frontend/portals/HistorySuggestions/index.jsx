@@ -15,7 +15,7 @@ const isIOS = isIOSTheme();
 const styles = {
   deleteHistory: isPersistentSearchBar => css({
     textDecoration: 'underline',
-    marginLeft: isIOS || isPersistentSearchBar ? 46 : 72,
+    marginLeft: isIOS || isPersistentSearchBar ? 52 : 72,
     marginTop: 10,
     color: colors.shade3,
     fontSize: 14,

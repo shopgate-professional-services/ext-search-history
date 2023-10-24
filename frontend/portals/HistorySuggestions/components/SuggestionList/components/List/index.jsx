@@ -56,7 +56,7 @@ class List extends Component {
               isSelected={isSelected}
               key={key}
             >
-              <div className={styles.innerContainer(isPersistentSearchBar)}>
+              <div className={styles.innerContainer}>
                 {child}
               </div>
             </BaseList.Item>

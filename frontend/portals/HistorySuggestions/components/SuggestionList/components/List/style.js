@@ -14,7 +14,7 @@ const list = css({
  * @return {string}
  */
 const item = isPersistentSearchBar => css({
-  paddingLeft: isIOS || isPersistentSearchBar ? 46 : 72,
+  paddingLeft: isIOS || isPersistentSearchBar ? 46 : 66,
   fontSize: isIOS || isPersistentSearchBar ? 16 : 14,
   fontWeight: 400,
 }).toString();
@@ -32,9 +32,8 @@ const itemNotLast = isPersistentSearchBar => css({
  * @param {boolean} isPersistentSearchBar isPersistentSearchBar
  * @return {string}
  */
-const innerContainer = isPersistentSearchBar => css({
+const innerContainer = css({
   marginLeft: -72,
-  minHeight: isIOS && !isPersistentSearchBar ? 'auto' : 53,
   position: 'relative',
 }).toString();
 
