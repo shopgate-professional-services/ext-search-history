@@ -1,9 +1,7 @@
 import { css } from 'glamor';
 import { themeConfig } from '@shopgate/engage';
-import { isIOSTheme } from '@shopgate-ps/pwa-extension-kit/env/helpers';
 
 const { colors, variables } = themeConfig;
-const isIOS = isIOSTheme();
 
 const disabled = css({
   color: colors.shade5,
@@ -25,10 +23,10 @@ const title = css({
 
 const grid = css({
   alignItems: 'center',
-  minHeight: isIOS ? 'auto' : 53,
   padding: `${variables.gap.small}px 0`,
   position: 'relative',
   zIndex: 2,
+  width: '100%',
 }).toString();
 
 const image = css({
@@ -38,10 +36,17 @@ const image = css({
   width: 40,
 }).toString();
 
+const button = css({
+  width: '100%',
+  textAlign: 'left',
+  verticalAlign: 'bottom',
+}).toString();
+
 export default {
   disabled,
   selected,
   title,
   grid,
   image,
+  button,
 };

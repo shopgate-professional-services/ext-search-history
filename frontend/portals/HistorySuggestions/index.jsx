@@ -15,7 +15,7 @@ const isIOS = isIOSTheme();
 const styles = {
   deleteHistory: isPersistentSearchBar => css({
     textDecoration: 'underline',
-    marginLeft: isIOS || isPersistentSearchBar ? 46 : 72,
+    marginLeft: isIOS || isPersistentSearchBar ? 52 : 72,
     marginTop: 10,
     color: colors.shade3,
     fontSize: 14,
@@ -47,8 +47,10 @@ const HistorySuggestions = ({
    */
   const handleClick = (e, searchTerm) => {
     // setTimeout prevents double click while VoiceOver is active
+    e.persist();
+    e.currentTarget.value = searchTerm;
+
     setTimeout(() => {
-      e.currentTarget.value = searchTerm;
       onClick(e, searchTerm);
     }, 0);
   };

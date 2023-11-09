@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/) and this p
 
 ## [Unreleased]
 
+## [1.0.5] 2023-10-24
+- fixed 'Uncaught TypeError' error resp. 'released/nullified synthetic event' warning
+- larger click area for search history items
+- style fixes
+
 ## [1.0.3] [1.0.4] 2022-02-10
 - added IT, FR, ES translations
 

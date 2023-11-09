@@ -109,7 +109,7 @@ class Item extends Component {
     }
 
     return (
-      <button type="button" onClick={this.props.onClick} data-test-id={this.props.testId} aria-label={this.props.title}>
+      <button type="button" className={styles.button} onClick={this.props.onClick} data-test-id={this.props.testId} aria-label={this.props.title}>
         <Glow className={this.props.className}>
           {this.renderContent()}
         </Glow>
