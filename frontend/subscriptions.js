@@ -7,7 +7,9 @@ import { addSearchHistory } from './action-creators';
  */
 const searchHistorySubscriptions = (subscribe) => {
   subscribe(searchRequesting$, ({ dispatch, action }) => {
-    dispatch(addSearchHistory(action.searchPhrase));
+    if (action.searchPhrase !== '*') {
+      dispatch(addSearchHistory(action.searchPhrase));
+    }
   });
 };
 
