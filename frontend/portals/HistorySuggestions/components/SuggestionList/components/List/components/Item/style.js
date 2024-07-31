@@ -1,16 +1,7 @@
 import { css } from 'glamor';
 import { themeConfig } from '@shopgate/engage';
 
-const { colors, variables } = themeConfig;
-
-const disabled = css({
-  color: colors.shade5,
-}).toString();
-
-const selected = css({
-  background: colors.shade7,
-  boxShadow: `0 -1px 0 0 ${colors.shade7}, 0 1px 0 0 ${colors.shade7}`,
-}).toString();
+const { variables } = themeConfig;
 
 const title = css({
   width: '100%',
@@ -29,24 +20,16 @@ const grid = css({
   width: '100%',
 }).toString();
 
-const image = css({
-  alignSelf: 'flex-start',
-  flexShrink: 0,
-  margin: `0 ${variables.gap.big}px`,
-  width: 40,
-}).toString();
-
 const button = css({
   width: '100%',
   textAlign: 'left',
   verticalAlign: 'bottom',
+  paddingLeft: 0,
+  paddingRight: 0,
 }).toString();
 
 export default {
-  disabled,
-  selected,
   title,
   grid,
-  image,
   button,
 };

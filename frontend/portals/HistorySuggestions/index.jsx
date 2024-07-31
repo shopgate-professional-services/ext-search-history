@@ -15,13 +15,12 @@ const isIOS = isIOSTheme();
 const styles = {
   deleteHistory: isPersistentSearchBar => css({
     textDecoration: 'underline',
-    marginLeft: isIOS || isPersistentSearchBar ? 52 : 72,
+    marginLeft: isIOS || isPersistentSearchBar ? 44 : 72,
     marginTop: 10,
     color: colors.shade3,
     fontSize: 14,
   }).toString(),
 };
-
 /**
  * @return {JSX}
  */
@@ -34,6 +33,7 @@ const HistorySuggestions = ({
   visible,
   bottomHeight,
   name,
+  closeSearch,
 }) => {
   if (!visible || !searchHistory.length || searchPhrase !== '') {
     return children;
@@ -55,11 +55,24 @@ const HistorySuggestions = ({
     }, 0);
   };
 
+  /* eslint-disable jsx-a11y/click-events-have-key-events,
+    jsx-a11y/no-static-element-interactions */
   return (
-    <div className={classnames(
-      { [stylesFile.list(isPersistentSearchBar)]: isIOS || isPersistentSearchBar },
-      { [stylesFile.bottom(bottomHeight)]: isIOS || isPersistentSearchBar }
-    )}
+    <div
+      className={classnames(
+        'ext-search-history_history-suggestions-wrapper',
+        { [stylesFile.list(isPersistentSearchBar)]: isIOS || isPersistentSearchBar },
+        { [stylesFile.bottom(bottomHeight)]: isIOS || isPersistentSearchBar }
+      )}
+      onClick={(e) => {
+        if (e.target.className.includes('ext-search-history_history-suggestions-wrapper')) {
+          if (typeof closeSearch === 'function') {
+            // close the search component when whitespace is pressed (needs to be supported by
+            // the portal)
+            closeSearch();
+          }
+        }
+      }}
     >
       <SuggestionList
         suggestions={searchHistory}
@@ -75,6 +88,9 @@ const HistorySuggestions = ({
       </Button>
     </div>
   );
+
+  /* eslint-enable jsx-a11y/click-events-have-key-events,
+    jsx-a11y/no-static-element-interactions */
 };
 
 HistorySuggestions.propTypes = {
@@ -83,6 +99,7 @@ HistorySuggestions.propTypes = {
   onClick: PropTypes.func.isRequired,
   bottomHeight: PropTypes.number,
   children: PropTypes.node,
+  closeSearch: PropTypes.func,
   searchHistory: PropTypes.arrayOf(PropTypes.string),
   searchPhrase: PropTypes.string,
   visible: PropTypes.bool,
@@ -90,6 +107,7 @@ HistorySuggestions.propTypes = {
 
 HistorySuggestions.defaultProps = {
   children: null,
+  closeSearch: null,
   searchHistory: null,
   searchPhrase: null,
   bottomHeight: 0,
