@@ -1,5 +1,6 @@
 {
   "ps_search_history": {
     "deleteHistory": "Delete history"
-  }
+  },
+  "history_announcement": "Search history"
 }

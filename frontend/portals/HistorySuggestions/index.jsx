@@ -59,6 +59,8 @@ const HistorySuggestions = ({
     jsx-a11y/no-static-element-interactions */
   return (
     <div
+      aria-live="polite"
+      aria-atomic="true"
       className={classnames(
         'ext-search-history_history-suggestions-wrapper',
         { [stylesFile.list(isPersistentSearchBar)]: isIOS || isPersistentSearchBar },
