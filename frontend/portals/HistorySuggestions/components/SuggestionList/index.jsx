@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { i18n } from '@shopgate/engage/core/helpers';
-import { css } from 'glamor';
+import { i18n } from '@shopgate/engage/core';
 import List from './components/List';
 import SearchSuggestion from './components/SearchSuggestion';
+import styles from './style';
 
 /**
  * The SuggestionList component.
@@ -16,20 +16,6 @@ function SuggestionList({
   if (!suggestions || suggestions.length === 0) {
     return null;
   }
-
-  const styles = {
-    srOnly: css({
-      border: '0',
-      clip: 'rect(0 0 0 0)',
-      height: '1px !important',
-      margin: '-1px',
-      overflow: 'hidden',
-      padding: '0',
-      position: 'absolute',
-      width: '1px',
-      whiteSpace: 'nowrap',
-    }).toString(),
-  };
 
   return (
     <List isPersistentSearchBar={isPersistentSearchBar}>
