@@ -5,8 +5,9 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
-## [1.1.0] 2025-05-12
+## [1.1.0] 2025-05-22
 - improve accessibility for screen readers
+- add translations for more languages
 
 ## [1.0.6] 2024-07-31
 - styling fixes
