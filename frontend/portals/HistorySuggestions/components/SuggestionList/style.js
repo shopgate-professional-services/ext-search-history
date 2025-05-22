@@ -1,4 +1,6 @@
-const srOnly = ({
+import { css } from 'glamor';
+
+const srOnly = css({
   border: '0',
   clip: 'rect(0 0 0 0)',
   height: '1px !important',
