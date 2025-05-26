@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { themeConfig } from '@shopgate/engage';
 import { I18n, Button } from '@shopgate/engage/components';
@@ -35,17 +35,13 @@ const HistorySuggestions = ({
   name,
   closeSearch,
 }) => {
-  if (!visible || !searchHistory.length || searchPhrase !== '') {
-    return children;
-  }
-
   const isPersistentSearchBar = name === 'persistent-search-bar.search.suggestions.before';
 
   /**
    * @param {Event} e Event
    * @param {string} searchTerm searchTerm
    */
-  const handleClick = (e, searchTerm) => {
+  const handleClick = useCallback((e, searchTerm) => {
     // setTimeout prevents double click while VoiceOver is active
     e.persist();
     e.currentTarget.value = searchTerm;
@@ -53,12 +49,26 @@ const HistorySuggestions = ({
     setTimeout(() => {
       onClick(e, searchTerm);
     }, 0);
-  };
+  }, [onClick]);
+
+  const handleDeleteSearchHistory = useCallback(() => {
+    // Focus search input after deleting search history
+    // eslint-disable-next-line no-unused-expressions
+    document.querySelector('input[type="search"], [data-test-id="searchInput"]')?.focus();
+
+    deleteSearchHistory();
+  }, [deleteSearchHistory]);
+
+  if (!visible || !searchHistory.length || searchPhrase !== '') {
+    return children;
+  }
 
   /* eslint-disable jsx-a11y/click-events-have-key-events,
     jsx-a11y/no-static-element-interactions */
   return (
     <div
+      aria-live="polite"
+      aria-atomic="true"
       className={classnames(
         'ext-search-history_history-suggestions-wrapper',
         { [stylesFile.list(isPersistentSearchBar)]: isIOS || isPersistentSearchBar },
@@ -82,7 +92,7 @@ const HistorySuggestions = ({
       <Button
         type="plain"
         className={styles.deleteHistory(isPersistentSearchBar)}
-        onClick={deleteSearchHistory}
+        onClick={handleDeleteSearchHistory}
       >
         <I18n.Text string="ps_search_history.deleteHistory" />
       </Button>
