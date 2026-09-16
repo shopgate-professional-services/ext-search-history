@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.1.1] 2026-09-16
+### Removed
+- pwa peerDependencies version check
+
 ## [1.1.0] 2025-05-22
 - improve accessibility for screen readers
 - add translations for more languages
