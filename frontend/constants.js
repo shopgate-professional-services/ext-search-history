@@ -1,4 +1,6 @@
-import { maxHistoryLength } from './config';
+import config from './config.json';
+
+const { maxHistoryLength } = config;
 
 export const PS_ADD_SEARCH_HISTORY = 'PS_ADD_SEARCH_HISTORY';
 export const PS_DELETE_SEARCH_HISTORY = 'PS_DELETE_SEARCH_HISTORY';
