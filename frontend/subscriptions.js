@@ -1,4 +1,4 @@
-import { searchRequesting$ } from '@shopgate/pwa-common-commerce/search/streams';
+import { searchRequesting$ } from '@shopgate/engage/search';
 import { addSearchHistory } from './action-creators';
 
 /**

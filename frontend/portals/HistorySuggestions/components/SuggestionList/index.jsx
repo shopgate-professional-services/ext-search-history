@@ -1,9 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { i18n } from '@shopgate/engage/core';
+import { makeStyles } from '@shopgate/engage/styles';
 import List from './components/List';
 import SearchSuggestion from './components/SearchSuggestion';
-import styles from './style';
+
+const useStyles = makeStyles()(() => ({
+  srOnly: {
+    border: 0,
+    clip: 'rect(0 0 0 0)',
+    height: '1px !important',
+    margin: -1,
+    overflow: 'hidden',
+    padding: 0,
+    position: 'absolute',
+    width: 1,
+    whiteSpace: 'nowrap',
+  },
+}));
 
 /**
  * The SuggestionList component.
@@ -13,23 +27,27 @@ import styles from './style';
 function SuggestionList({
   onClick, suggestions, isPersistentSearchBar,
 }) {
+  const { classes } = useStyles();
+
   if (!suggestions || suggestions.length === 0) {
     return null;
   }
 
   return (
-    <List isPersistentSearchBar={isPersistentSearchBar}>
-      <div className={styles.srOnly}>
+    <>
+      <div className={classes.srOnly}>
         {i18n.text('history_announcement')}
       </div>
-      {suggestions.map(suggestion =>
-        (<SearchSuggestion
-          key={suggestion}
-          suggestion={suggestion}
-          onClick={e => onClick(e, suggestion)}
-          isPersistentSearchBar={isPersistentSearchBar}
-        />))}
-    </List>
+      <List isPersistentSearchBar={isPersistentSearchBar}>
+        {suggestions.map(suggestion =>
+          (<SearchSuggestion
+            key={suggestion}
+            suggestion={suggestion}
+            onClick={e => onClick(e, suggestion)}
+            isPersistentSearchBar={isPersistentSearchBar}
+          />))}
+      </List>
+    </>
   );
 }
 

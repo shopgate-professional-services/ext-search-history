@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [2.0.0] 2026-09-17
+### Changed
+- adopted the new engage theme: the history suggestion list now sources its background/surface and text colors from the theme config (`theme.palette.background.surface`, `theme.palette.text.primary`/`secondary`, `theme.components.separatorLine.borderColor`)
+- migrated all styling from glamor to `@shopgate/engage/styles` (`makeStyles`/`useStyles`), inlined into the components
+- `@shopgate/engage` is now a `7.32.0-beta.19` peer dependency (drops PWA 6 support)
+- replaced `@shopgate-ps/pwa-extension-kit` with the engage-native `isIOSTheme`
+- modernized the frontend toolchain (removed glamor, classnames and legacy dev dependencies)
+
 ## [1.1.1] 2026-09-16
 ### Removed
 - pwa peerDependencies version check

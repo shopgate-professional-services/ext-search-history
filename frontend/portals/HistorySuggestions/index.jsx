@@ -1,41 +1,76 @@
 import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { themeConfig } from '@shopgate/engage';
-import { I18n, Button } from '@shopgate/engage/components';
-import { isIOSTheme } from '@shopgate-ps/pwa-extension-kit/env/helpers';
-import { css } from 'glamor';
-import classnames from 'classnames';
-import connect from './connector';
+import { useSelector, useDispatch } from 'react-redux';
+import { I18n } from '@shopgate/engage/components';
+import { Button } from '@shopgate/engage/components/v2';
+import { isIOSTheme } from '@shopgate/engage/core';
+import { makeStyles } from '@shopgate/engage/styles';
+import { getSearchHistory } from '../../selectors';
+import { deleteSearchHistory } from '../../action-creators';
 import SuggestionList from './components/SuggestionList';
-import stylesFile from './style';
 
-const { colors } = themeConfig;
 const isIOS = isIOSTheme();
 
-const styles = {
-  deleteHistory: isPersistentSearchBar => css({
-    textDecoration: 'underline',
-    marginLeft: isIOS || isPersistentSearchBar ? 44 : 72,
-    marginTop: 10,
-    color: colors.shade3,
-    fontSize: 14,
-  }).toString(),
-};
+const HEADER_HEIGHT = 56;
+const IOS_SEARCH_HEIGHT = 43;
+const GMD_SEARCH_HEIGHT = 58;
+
+const useStyles = makeStyles()((theme, { isPersistentSearchBar, bottomHeight }) => {
+  const additionalHeight = isIOS ? 25 : 0;
+
+  return {
+    list: {
+      fontSize: 16,
+      fontWeight: 400,
+      bottom: 0,
+      position: 'absolute',
+      height: '100vh',
+      left: 0,
+      right: 0,
+      top: isPersistentSearchBar
+        ? 0
+        : `calc(${HEADER_HEIGHT}px + ${additionalHeight}px + ${isIOS ? IOS_SEARCH_HEIGHT : GMD_SEARCH_HEIGHT}px )`,
+      backgroundColor: theme.palette.background.surface,
+      color: theme.palette.text.primary,
+      overflowY: 'scroll',
+      zIndex: 3,
+      borderTop: `0.5px solid ${theme.components.separatorLine.borderColor}`,
+      paddingTop: 5,
+    },
+    bottom: {
+      paddingBottom: bottomHeight,
+    },
+    deleteHistory: {
+      textDecoration: 'underline',
+      marginLeft: isIOS || isPersistentSearchBar ? 44 : 72,
+      marginTop: 10,
+      color: theme.palette.text.secondary,
+      fontSize: 14,
+      fontWeight: 400,
+    },
+  };
+});
+
 /**
+ * @param {Object} props The component props.
  * @return {JSX}
  */
 const HistorySuggestions = ({
   onClick,
-  searchHistory,
   searchPhrase,
   children,
-  deleteSearchHistory,
   visible,
   bottomHeight,
   name,
   closeSearch,
 }) => {
+  const dispatch = useDispatch();
+  const searchHistory = useSelector(getSearchHistory);
   const isPersistentSearchBar = name === 'persistent-search-bar.search.suggestions.before';
+  const { classes, cx } = useStyles({
+    isPersistentSearchBar,
+    bottomHeight,
+  });
 
   /**
    * @param {Event} e Event
@@ -53,11 +88,14 @@ const HistorySuggestions = ({
 
   const handleDeleteSearchHistory = useCallback(() => {
     // Focus search input after deleting search history
-    // eslint-disable-next-line no-unused-expressions
-    document.querySelector('input[type="search"], [data-test-id="searchInput"]')?.focus();
+    const input = document.querySelector('input[type="search"], [data-test-id="searchInput"]');
 
-    deleteSearchHistory();
-  }, [deleteSearchHistory]);
+    if (input) {
+      input.focus();
+    }
+
+    dispatch(deleteSearchHistory());
+  }, [dispatch]);
 
   if (!visible || !searchHistory.length || searchPhrase !== '') {
     return children;
@@ -69,10 +107,10 @@ const HistorySuggestions = ({
     <div
       aria-live="polite"
       aria-atomic="true"
-      className={classnames(
+      className={cx(
         'ext-search-history_history-suggestions-wrapper',
-        { [stylesFile.list(isPersistentSearchBar)]: isIOS || isPersistentSearchBar },
-        { [stylesFile.bottom(bottomHeight)]: isIOS || isPersistentSearchBar }
+        { [classes.list]: isIOS || isPersistentSearchBar },
+        { [classes.bottom]: isIOS || isPersistentSearchBar }
       )}
       onClick={(e) => {
         if (e.target.className.includes('ext-search-history_history-suggestions-wrapper')) {
@@ -90,8 +128,8 @@ const HistorySuggestions = ({
         isPersistentSearchBar={isPersistentSearchBar}
       />
       <Button
-        type="plain"
-        className={styles.deleteHistory(isPersistentSearchBar)}
+        variant="link"
+        className={classes.deleteHistory}
         onClick={handleDeleteSearchHistory}
       >
         <I18n.Text string="ps_search_history.deleteHistory" />
@@ -104,13 +142,11 @@ const HistorySuggestions = ({
 };
 
 HistorySuggestions.propTypes = {
-  deleteSearchHistory: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   bottomHeight: PropTypes.number,
   children: PropTypes.node,
   closeSearch: PropTypes.func,
-  searchHistory: PropTypes.arrayOf(PropTypes.string),
   searchPhrase: PropTypes.string,
   visible: PropTypes.bool,
 };
@@ -118,10 +154,9 @@ HistorySuggestions.propTypes = {
 HistorySuggestions.defaultProps = {
   children: null,
   closeSearch: null,
-  searchHistory: null,
   searchPhrase: null,
   bottomHeight: 0,
   visible: true,
 };
 
-export default connect(HistorySuggestions);
+export default HistorySuggestions;
